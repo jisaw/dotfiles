@@ -18,6 +18,8 @@ Plugin 'ervandew/supertab'
 
 "Plugin 'Shougo/neocomplete'
 
+Plugin 'tomasr/molokai'
+
 Plugin 'scrooloose/nerdtree'
 
 "Plugin 'Valloric/YouCompleteMe'
@@ -27,7 +29,7 @@ map <C-n> :NERDTreeToggle<CR>
 set number
 syntax enable
 set background=dark
-let g:solarized_termcolors = 256
+"let g:solarized_termcolors = 256
 
 let g:neocomplete#enable_at_startup=1
 
@@ -53,7 +55,13 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 autocmd! bufwritepost .vimrc source %
 
-colorscheme solarized
+let g:rehash256 = 1
+
+set rtp+=$GOROOT/misc/vim
+
+autocmd BufNewFile,BufReadPost *.go set filetype=go
+
+colorscheme molokai
 
 set pastetoggle=<F2>
 
