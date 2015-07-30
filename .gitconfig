@@ -1,0 +1,11 @@
+[user]
+	name = Jake Sawyer
+	email = jsawyer@xpanxion.com
+[core]
+	editor = vim
+[help]
+	autocorrect = 1
+[color]
+	ui = auto
+[alias]
+	lga = log --graph --oneline --all --decorate
