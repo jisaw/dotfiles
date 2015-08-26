@@ -29,8 +29,8 @@
 set nocompatible " Fuck VI... That's for grandpas.
 filetype off
  
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
  
 " Vundle let's you specify a plugin in a number of formats, but my favorite
 " allows you to grab plugins straight off of github, just specify the bundle
@@ -38,17 +38,17 @@ call vundle#rc()
 " Bundle 'githubUsername/repoName'
  
 " Let vundle manage itself:
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
  
 " Just a shitload of color schemes.
 " https://github.com/flazz/vim-colorschemes#current-colorschemes
-Bundle 'flazz/vim-colorschemes'
+Plugin 'flazz/vim-colorschemes'
  
 " Fuzzy finder -- absolutely must have.
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
  
 " Support for easily toggling comments.
-Bundle 'tpope/vim-commentary'
+Plugin 'tpope/vim-commentary'
  
 " In addtion to the above plugins, you'll likely need some for individual
 " non-standard syntaxes that aren't pre-bundled with vim. Here are some I use,
@@ -56,23 +56,23 @@ Bundle 'tpope/vim-commentary'
 " this may differ for you.
  
 " Proper JSON filetype detection, and support.
-Bundle 'leshill/vim-json'
+Plugin 'leshill/vim-json'
  
 " vim already has syntax support for javascript, but the indent support is
 " horrid. This fixes that.
-Bundle 'pangloss/vim-javascript'
+Plugin 'pangloss/vim-javascript'
  
 " vim indents HTML very poorly on it's own. This fixes a lot of that.
-Bundle 'indenthtml.vim'
+Plugin 'indenthtml.vim'
  
 " I write markdown a lot. This is a good syntax.
-Bundle 'tpope/vim-markdown'
+Plugin 'tpope/vim-markdown'
  
 " LessCSS -- I use this every day.
-Bundle 'groenewege/vim-less'
+Plugin 'groenewege/vim-less'
  
 " Coffee-script syntax.
-Bundle 'kchmck/vim-coffee-script'
+Plugin 'kchmck/vim-coffee-script'
 
 Plugin 'fatih/vim-go'
  
@@ -93,6 +93,7 @@ set smarttab " let's tab key insert 'tab stops', and bksp deletes tabs.
 set shiftround " tab / shifting moves to closest tabstop.
 set autoindent " Match indents on new lines.
 set smartindent " Intellegently dedent / indent new lines based on rules.
+set nu
  
 " We have VCS -- we don't need this stuff.
 set nobackup " We have vcs, we don't need backups.
