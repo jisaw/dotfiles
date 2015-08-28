@@ -40,10 +40,6 @@ call vundle#begin()
 " Let vundle manage itself:
 Plugin 'gmarik/vundle'
  
-" Just a shitload of color schemes.
-" https://github.com/flazz/vim-colorschemes#current-colorschemes
-Plugin 'flazz/vim-colorschemes'
- 
 " Fuzzy finder -- absolutely must have.
 Plugin 'kien/ctrlp.vim'
  
@@ -171,7 +167,6 @@ let g:ctrlp_max_height = 30
  
 " Finally the color scheme. Choose whichever you want from the list in the
 " link above (back up where we included the bundle of a ton of themes.)
-colorscheme 256-jungle 
 
 map <C-n> :NERDTreeToggle<CR>
 
