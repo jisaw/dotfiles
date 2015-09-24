@@ -39,6 +39,8 @@ call vundle#begin()
  
 " Let vundle manage itself:
 Plugin 'gmarik/vundle'
+
+Plugin 'flazz/vim-colorschemes'
  
 " Fuzzy finder -- absolutely must have.
 Plugin 'kien/ctrlp.vim'
@@ -77,7 +79,10 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 
 Plugin 'severin-lemaignan/vim-minimap'
+
+Plugin 'shougo/neocomplete.vim'
 " We have to turn this stuff back on if we want all of our features.
+call vundle#end()
 filetype plugin indent on " Filetype auto-detection
 syntax on " Syntax highlighting
  
@@ -177,3 +182,4 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 set mouse=a
 set bs=2
+colorscheme 256-grayvim
