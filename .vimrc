@@ -182,4 +182,4 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 set mouse=a
 set bs=2
-colorscheme 256-grayvim
+colorscheme 3dglasses
