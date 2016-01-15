@@ -180,6 +180,13 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
+inoremap ( ()<Esc>i
+inoremap " ()<Esc>i
+inoremap ' ()<Esc>i
+inoremap [ ()<Esc>i
+inoremap { ()<Esc>i
+inoremap < ()<Esc>i
+
 set mouse=a
 set bs=2
 colorscheme 3dglasses
