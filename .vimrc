@@ -81,6 +81,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'severin-lemaignan/vim-minimap'
 
 Plugin 'shougo/neocomplete.vim'
+
+Plugin 'SirVer/ultisnips'
 " We have to turn this stuff back on if we want all of our features.
 call vundle#end()
 filetype plugin indent on " Filetype auto-detection
@@ -179,6 +181,21 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" use 4 spaces for tabs
+ set tabstop=4 softtabstop=4 shiftwidth=4
+"
+" " display indentation guides
+ set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
+"
+" " convert spaces to tabs when reading file
+ autocmd! bufreadpost * set noexpandtab | retab! 4
+"
+" " convert tabs to spaces before writing file
+ autocmd! bufwritepre * set expandtab | retab! 4
+"
+" " convert spaces to tabs after writing file (to show guides again)
+ autocmd! bufwritepost * set noexpandtab | retab! 4)"""""
 
 inoremap ( ()<Esc>i
 inoremap " ""<Esc>i
