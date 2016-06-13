@@ -1,3 +1,4 @@
+" M
 " Beginners .vimrc
 " v0.1 2012-10-22 Philip Thrasher
 "
@@ -83,11 +84,24 @@ Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'shougo/neocomplete.vim'
 
 Plugin 'SirVer/ultisnips'
+
+Plugin 'Yggdroot/indentLine'
+
+Plugin 'Raimondi/delimitMate'
+
+Plugin 'ervandew/supertab'
+
+
 " We have to turn this stuff back on if we want all of our features.
 call vundle#end()
 filetype plugin indent on " Filetype auto-detection
 syntax on " Syntax highlighting
  
+"vertical line indentation
+ let g:indentLine_color_term = 239
+ let g:indentLine_color_gui = '#09AA08'
+ let g:indentLine_char = '│'
+
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -183,26 +197,27 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " use 4 spaces for tabs
- set tabstop=4 softtabstop=4 shiftwidth=4
+"set tabstop=4 softtabstop=4 shiftwidth=4
 "
 " " display indentation guides
- set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
+"set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
 "
 " " convert spaces to tabs when reading file
- autocmd! bufreadpost * set noexpandtab | retab! 4
+"autocmd! bufreadpost * set noexpandtab | retab! 4
 "
 " " convert tabs to spaces before writing file
- autocmd! bufwritepre * set expandtab | retab! 4
+"autocmd! bufwritepre * set expandtab | retab! 4
 "
 " " convert spaces to tabs after writing file (to show guides again)
- autocmd! bufwritepost * set noexpandtab | retab! 4)"""""
+"autocmd! bufwritepost * set noexpandtab | retab! 4)"""""
 
-inoremap ( ()<Esc>i
-inoremap " ""<Esc>i
-inoremap ' ''<Esc>i
-inoremap [ []<Esc>i
-inoremap { {}<Esc>i
-inoremap < <><Esc>i
+" Use <leader>t to open ctrlp
+ let g:ctrlp_map = '<leader>t'
+" " Ignore these directories
+ set wildignore+=*/build/**
+" " disable caching
+ let g:ctrlp_use_caching=0
+
 
 set mouse=a
 set bs=2
