@@ -5,7 +5,8 @@ export ZSH=~/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="jonathan"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -82,4 +83,11 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Alias vim to the brew version
 alias vim=/usr/local/bin/vim
+# BD connections
+alias ssh_qa2='ssh -C <username>@dev1fs.businessolver.com'
+alias ssh_dev='ssh -C <username>@dev1fs.businessolver.com -L1521:devdb:1521 -L11211:localhost:11211'
+alias ssh_qa='ssh -C <username>@dev1fs.businessolver.com -L1521:qaracdb1:1521 -L11211:localhost:11211'
+alias ssh_qa3='ssh -C <username>@dev1fs.businessolver.com'
