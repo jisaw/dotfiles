@@ -29,6 +29,7 @@ values."
      git
      markdown
      ;; org
+     ruby-on-rails
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -257,6 +258,11 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+
+  (autoload 'enable-paredit-mode "paredit" "Turn on Lisp headache remedy" t)
+  (add-hook 'clojure-mode-hook #'enable-paredit-mode)
+
   (global-linum-mode) ; Show line numbers by default
   )
 ;; Do not write anything past this comment. This is where Emacs will
