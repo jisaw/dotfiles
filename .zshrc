@@ -91,3 +91,7 @@ alias ssh_qa2='ssh -C <username>@dev1fs.businessolver.com'
 alias ssh_dev='ssh -C <username>@dev1fs.businessolver.com -L1521:devdb:1521 -L11211:localhost:11211'
 alias ssh_qa='ssh -C <username>@dev1fs.businessolver.com -L1521:qaracdb1:1521 -L11211:localhost:11211'
 alias ssh_qa3='ssh -C <username>@dev1fs.businessolver.com'
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/jsawyer/.sdkman"
+[[ -s "/Users/jsawyer/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jsawyer/.sdkman/bin/sdkman-init.sh"
