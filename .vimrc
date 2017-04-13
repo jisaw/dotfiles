@@ -91,6 +91,8 @@ Plugin 'Raimondi/delimitMate'
 
 Plugin 'ervandew/supertab'
 
+Plugin 'rizzatti/dash.vim'
+
 
 " We have to turn this stuff back on if we want all of our features.
 call vundle#end()
@@ -188,7 +190,6 @@ let g:ctrlp_max_height = 30
  
 " Finally the color scheme. Choose whichever you want from the list in the
 " link above (back up where we included the bundle of a ton of themes.)
-
 map <C-n> :NERDTreeToggle<CR>
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -223,6 +224,12 @@ set mouse=a
 set bs=2
 colorscheme Chasing_Logic  
 
+" iTerm2
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" iTerm2 using TMUX
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"

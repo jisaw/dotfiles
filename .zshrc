@@ -95,3 +95,9 @@ alias ssh_qa3='ssh -C <username>@dev1fs.businessolver.com'
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/jsawyer/.sdkman"
 [[ -s "/Users/jsawyer/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jsawyer/.sdkman/bin/sdkman-init.sh"
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+export PATH="$HOME/.npm-packages/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$PATH"
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
