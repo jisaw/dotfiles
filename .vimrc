@@ -66,7 +66,7 @@ Plugin 'indenthtml.vim'
  
 " I write markdown a lot. This is a good syntax.
 Plugin 'tpope/vim-markdown'
- 
+
 " LessCSS -- I use this every day.
 Plugin 'groenewege/vim-less'
  
@@ -93,6 +93,11 @@ Plugin 'ervandew/supertab'
 
 Plugin 'rizzatti/dash.vim'
 
+Plugin 'ajh17/Spacegray'
+
+" REACT.js
+Plugin 'mxw/vim-jsx'
+
 
 " We have to turn this stuff back on if we want all of our features.
 call vundle#end()
@@ -103,6 +108,8 @@ syntax on " Syntax highlighting
  let g:indentLine_color_term = 239
  let g:indentLine_color_gui = '#09AA08'
  let g:indentLine_char = '│'
+
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 set tabstop=4
 set shiftwidth=4
