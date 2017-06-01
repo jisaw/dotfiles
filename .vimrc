@@ -81,8 +81,6 @@ Plugin 'majutsushi/tagbar'
 
 Plugin 'severin-lemaignan/vim-minimap'
 
-Plugin 'shougo/neocomplete.vim'
-
 Plugin 'SirVer/ultisnips'
 
 Plugin 'Yggdroot/indentLine'
@@ -93,10 +91,14 @@ Plugin 'ervandew/supertab'
 
 Plugin 'rizzatti/dash.vim'
 
-Plugin 'ajh17/Spacegray'
+Plugin 'ajh17/Spacegray.vim'
 
 " REACT.js
 Plugin 'mxw/vim-jsx'
+
+Plugin 'ternjs/tern_for_vim'
+
+Plugin 'Valloric/YouCompleteMe'
 
 
 " We have to turn this stuff back on if we want all of our features.
@@ -226,10 +228,18 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " " disable caching
  let g:ctrlp_use_caching=0
 
+" use JSX plugin with .js files
+let g:jsx_ext_required = 0
 
 set mouse=a
 set bs=2
-colorscheme Chasing_Logic  
+colorscheme spacegray  
+
+" Tern
+"enable keyboard shortcuts
+let g:tern_map_keys=1
+""show argument hints
+let g:tern_show_argument_hints='on_hold'
 
 " iTerm2
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
