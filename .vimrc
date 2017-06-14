@@ -74,6 +74,9 @@ Plugin 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
 
 Plugin 'fatih/vim-go'
+
+" Elixir
+Plugin 'elixir-lang/vim-elixir'
  
 Plugin 'scrooloose/nerdtree'
 
