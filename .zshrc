@@ -102,3 +102,4 @@ export PATH="$HOME/.yarn/bin:$PATH"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 export MP_FULLNAME="Jacob Sawyer"
+export ECLIPSE_HOME=/Applications/Eclipse.app/Contents/Eclipse/

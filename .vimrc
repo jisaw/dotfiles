@@ -96,6 +96,10 @@ Plugin 'rizzatti/dash.vim'
 
 Plugin 'ajh17/Spacegray.vim'
 
+" Clojure
+Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+
 " REACT.js
 Plugin 'mxw/vim-jsx'
 
