@@ -12,6 +12,20 @@
                         "~/.emacs.d/org/home.org")
  sentence-end-double-space nil)
 
+;; store all backup and autosave files in the tmp dir
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
+;; smart tab behavior - indent or complete
+(setq tab-always-indent 'complete)
+
+;; Always load newest byte code
+(setq load-prefer-newer t)
+
+;; enable y/n answers
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; buffer local variables
 (setq-default
@@ -41,11 +55,21 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(add-to-list 'load-path "~/.emacs.d/neotree")
-(require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
-
 (require 'use-package)
+
+(use-package windmove
+  :config
+  ;; use shift + arrow keys to switch between visible buffers
+  (windmove-default-keybindings))
+
+(use-package rainbow-delimiters
+  :ensure t
+  :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
+(use-package rainbow-mode
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-mode))
 
 (use-package which-key
   :ensure t
@@ -76,6 +100,11 @@
 (use-package helm-projectile
   :ensure t
   :config (helm-projectile-on))
+
+(use-package magit
+  :ensure t
+  :config (global-set-key (kbd "C-x g") 'magit-status)
+)
 
 (use-package autopair
   :ensure t
@@ -112,7 +141,7 @@
     ("a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
  '(package-selected-packages
    (quote
-    (markdown-mode autopair scala-mode helm-projectile projectile helm evil material-theme which-key use-package))))
+    (rainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm evil material-theme which-key use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
