@@ -126,6 +126,35 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+;; Clojure
+(use-package paredit
+  :ensure t)
+
+(use-package clojure-mode
+  :ensure t)
+
+(use-package clojure-mode-extra-font-locking
+  :ensure t)
+
+(use-package cider
+  :ensure t)
+
+(use-package ido
+  :ensure t
+  :config (ido-mode 1)
+          (ido-everywhere 1))
+
+(use-package ido-completing-read+
+  :ensure t
+  :config (ido-ubiquitous-mode 1))
+
+(use-package smex
+  :ensure t
+  :config (smex-initialize)
+          (global-set-key (kbd "M-x") 'smex)
+          (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+          (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command))
+
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
