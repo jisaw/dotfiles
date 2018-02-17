@@ -57,11 +57,6 @@
 
 (require 'use-package)
 
-(use-package windmove
-  :config
-  ;; use shift + arrow keys to switch between visible buffers
-  (windmove-default-keybindings))
-
 (use-package rainbow-delimiters
   :ensure t
   :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
