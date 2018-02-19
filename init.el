@@ -39,6 +39,8 @@
 ;; modes
 (electric-indent-mode 0)
 (tool-bar-mode -1)
+(toggle-scroll-bar -1)
+(menu-bar-mode -1)  
 (global-linum-mode)
 
 ;; global keybindings
@@ -111,6 +113,10 @@
 ;;(use-package material-theme
 ;;  :ensure t
 ;;  :config (load-theme 'material t))
+
+(use-package powerline
+  :ensure t
+  :config (powerline-default-theme))
 
 (use-package ample-theme
   :ensure t
@@ -194,7 +200,7 @@
     ("a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
  '(package-selected-packages
    (quote
-    (ample-theme omnisharp groovy-mode ## ensime xref-js2 js2-refactor js2-mode rainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm evil material-theme which-key use-package))))
+    (powerline ample-theme omnisharp groovy-mode ## ensime xref-js2 js2-refactor js2-mode aainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm evil material-theme which-key use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
