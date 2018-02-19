@@ -12,6 +12,9 @@
                         "~/.emacs.d/org/home.org")
  sentence-end-double-space nil)
 
+(setq debug-on-error t)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+
 ;; store all backup and autosave files in the tmp dir
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
@@ -30,7 +33,7 @@
 ;; buffer local variables
 (setq-default
  indent-tabs-mode nil
- tab-width 4
+ tab-width 8
  c-basic-offset 4)
 
 ;; modes
@@ -56,6 +59,11 @@
   (package-install 'use-package))
 
 (require 'use-package)
+
+(use-package omnisharp
+  :ensure t
+  :config (add-hook 'csharp-mode-hook 'omnisharp-mode)
+          (add-hook 'csharp-mode-hook #'flycheck-mode))
 
 (use-package windmove
   :config
@@ -110,13 +118,39 @@
   :ensure t
   :config (autopair-global-mode))
 
-(use-package material-theme
+;;(use-package material-theme
+;;  :ensure t
+;;  :config (load-theme 'material t))
+
+(use-package ample-theme
   :ensure t
-  :config (load-theme 'material t))
+  :config (load-theme 'ample-flat t t))
+
+(use-package groovy-mode
+  :ensure t
+  :interpreter ("groovy" . groovy-mode))
+
+;; Scala
+
+(use-package sbt-mode
+  :commands sbt-start sbt-command
+  :pin melpa-stable
+  :config
+  ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
+  ;; allows using SPACE when in the minibuffer
+  (substitute-key-definition
+   'minibuffer-complete-word
+   'self-insert-command
+   minibuffer-local-completion-map))
 
 (use-package scala-mode
   :ensure t
+  :pin melpa-stable
   :interpreter ("scala" . scala-mode))
+
+(use-package ensime
+  :ensure t
+  :pin melpa-stable)
 
 (use-package markdown-mode
   :ensure t
@@ -124,20 +158,7 @@
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown"))
-
-;; Clojure
-(use-package paredit
-  :ensure t)
-
-(use-package clojure-mode
-  :ensure t)
-
-(use-package clojure-mode-extra-font-locking
-  :ensure t)
-
-(use-package cider
-  :ensure t)
+  :init (setq markdown-command "pandoc"))
 
 (use-package ido
   :ensure t
@@ -155,6 +176,19 @@
           (global-set-key (kbd "M-X") 'smex-major-mode-commands)
           (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command))
 
+;; Clojure
+(use-package paredit
+  :ensure t)
+
+(use-package clojure-mode
+  :ensure t)
+
+(use-package clojure-mode-extra-font-locking
+  :ensure t)
+
+(use-package cider
+  :ensure t)
+
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
@@ -170,7 +204,7 @@
     ("a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
  '(package-selected-packages
    (quote
-    (rainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm evil material-theme which-key use-package))))
+    (ample-theme omnisharp groovy-mode ## ensime xref-js2 js2-refactor js2-mode rainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm evil material-theme which-key use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
