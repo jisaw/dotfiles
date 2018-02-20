@@ -66,6 +66,12 @@
   :ensure t
   :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
+(use-package json-mode
+  :ensure t)
+
+(use-package json-reformat
+  :ensure t)
+
 (use-package rainbow-mode
   :ensure t
   :config
@@ -198,9 +204,12 @@
  '(custom-safe-themes
    (quote
     ("a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
+ '(org-agenda-files
+   (quote
+    ("~/.emacs.d/org/work.org" "~/.emacs.d/org/home.org")))
  '(package-selected-packages
    (quote
-    (powerline ample-theme omnisharp groovy-mode ## ensime xref-js2 js2-refactor js2-mode aainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm evil material-theme which-key use-package))))
+    (json-mode powerline ample-theme omnisharp groovy-mode ## ensime xref-js2 js2-refactor js2-mode aainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm evil material-theme which-key use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
