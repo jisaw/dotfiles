@@ -1,13 +1,13 @@
 ;; global variables
 (setq
- inhibit-startup-screen t
+;; inhibit-startup-screen t
  create-lockfiles nil
  make-backup-files nil
  column-number-mode t
  scroll-error-top-bottom t
  show-paren-delay 0.5
  use-package-always-ensure t
- initial-buffer-choice "~/.emacs.d/org/work.org"
+;; initial-buffer-choice "~/.emacs.d/org/work.org"
  org-agenda-files (list "~/.emacs.d/org/work.org"
                         "~/.emacs.d/org/home.org")
  sentence-end-double-space nil)
