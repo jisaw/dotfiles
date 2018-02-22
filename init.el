@@ -72,6 +72,9 @@
 (use-package json-reformat
   :ensure t)
 
+(use-package dirtree
+  :ensure t)
+
 (use-package rainbow-mode
   :ensure t
   :config
@@ -82,18 +85,18 @@
   :config (which-key-mode))
 
 
-(use-package evil
-  :ensure t
-  :config (define-key evil-normal-state-map "\C-y" 'yank)
-          (define-key evil-insert-state-map "\C-y" 'yank)
-          (define-key evil-visual-state-map "\C-y" 'yank)
-          (define-key evil-insert-state-map "\C-e" 'end-of-line)
-          (define-key evil-normal-state-map "\C-w" 'evil-delete)
-          (define-key evil-insert-state-map "\C-w" 'evil-delete)
-          (define-key evil-insert-state-map "\C-r" 'search-backward)
-          (define-key evil-visual-state-map "\C-w" 'evil-delete)
-          (evil-mode 1)
-)
+;;(use-package evil
+;;  :ensure t
+;;  :config (define-key evil-normal-state-map "\C-y" 'yank)
+;;          (define-key evil-insert-state-map "\C-y" 'yank)
+;;          (define-key evil-visual-state-map "\C-y" 'yank)
+;;          (define-key evil-insert-state-map "\C-e" 'end-of-line)
+;;          (define-key evil-normal-state-map "\C-w" 'evil-delete)
+;;          (define-key evil-insert-state-map "\C-w" 'evil-delete)
+;;          (define-key evil-insert-state-map "\C-r" 'search-backward)
+;;          (define-key evil-visual-state-map "\C-w" 'evil-delete)
+;;          (evil-mode 1)
+;;)
 
 (use-package projectile
   :ensure t
@@ -209,7 +212,7 @@
     ("~/.emacs.d/org/work.org" "~/.emacs.d/org/home.org")))
  '(package-selected-packages
    (quote
-    (json-mode powerline ample-theme omnisharp groovy-mode ## ensime xref-js2 js2-refactor js2-mode aainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm evil material-theme which-key use-package))))
+    (dirtree json-mode powerline ample-theme omnisharp groovy-mode ## ensime xref-js2 js2-refactor js2-mode aainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm evil material-theme which-key use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
