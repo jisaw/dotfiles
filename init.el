@@ -112,7 +112,11 @@
   :config (setq projectile-completion-system 'helm)
   (global-set-key (kbd "M-x") #'helm-M-x)
   (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
-  (global-set-key (kbd "C-x C-f") #'helm-find-files))
+  (global-set-key (kbd "C-x C-f") #'helm-find-files)
+  (global-set-key (kbd "M-y") #'helm-show-kill-ring)
+  (global-set-key (kbd "C-x b") #'helm-mini)
+  (setq helm-buffers-fuzzy-matching t
+        helm-recentf-fuzzy-match    t))
 
 (use-package helm-projectile
   :ensure t
