@@ -46,6 +46,10 @@
 ;; global keybindings
 (global-unset-key (kbd "C-z"))
 
+(eval-after-load "shell"
+  '(define-key shell-mode-map (kbd "TAB") #'company-complete))
+(add-hook 'shell-mode-hook #'company-mode)
+
 ;; the package manager
 (require 'package)
 (setq
@@ -102,10 +106,13 @@
   :ensure t
   :config (projectile-global-mode
            (setq projectile-indexing-method 'alien)))
-  
+
 (use-package helm
   :ensure t
-  :config (setq projectile-completion-system 'helm))
+  :config (setq projectile-completion-system 'helm)
+  (global-set-key (kbd "M-x") #'helm-M-x)
+  (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+  (global-set-key (kbd "C-x C-f") #'helm-find-files))
 
 (use-package helm-projectile
   :ensure t
@@ -114,7 +121,7 @@
 (use-package magit
   :ensure t
   :config (global-set-key (kbd "C-x g") 'magit-status)
-)
+  )
 
 (use-package autopair
   :ensure t
@@ -149,6 +156,10 @@
    'self-insert-command
    minibuffer-local-completion-map))
 
+(use-package auto-complete
+  :ensure t
+  :config (ac-config-default))
+
 (use-package scala-mode
   :ensure t
   :pin melpa-stable
@@ -169,7 +180,7 @@
 (use-package ido
   :ensure t
   :config (ido-mode 1)
-          (ido-everywhere 1))
+  (ido-everywhere 1))
 
 (use-package ido-completing-read+
   :ensure t
@@ -178,9 +189,9 @@
 (use-package smex
   :ensure t
   :config (smex-initialize)
-          (global-set-key (kbd "M-x") 'smex)
-          (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-          (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command))
+  (global-set-key (kbd "M-x") 'smex)
+  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+  (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command))
 
 ;; Clojure
 (use-package paredit
@@ -213,7 +224,7 @@
     ("~/.emacs.d/org/work.org" "~/.emacs.d/org/home.org")))
  '(package-selected-packages
    (quote
-    (dirtree json-mode powerline ample-theme omnisharp groovy-mode ## ensime xref-js2 js2-refactor js2-mode aainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm evil material-theme which-key use-package))))
+    (bash-completion dirtree json-mode powerline ample-theme omnisharp groovy-mode ## ensime xref-js2 js2-refactor js2-mode aainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm evil material-theme which-key use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
