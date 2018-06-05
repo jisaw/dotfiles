@@ -1,0 +1,30 @@
+!SESSION 2017-09-26 13:39:00.861 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_144
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -data C:\Users\js28187\AppData\Roaming\Code\User\workspaceStorage\b6fcb95e5d2eca0a5459fee9aab10796\redhat.java\jdt_ws
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2017-09-26 13:39:03.454
+!MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is started
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2017-09-26 13:39:03.586
+!MESSAGE >> initialize
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2017-09-26 13:39:03.590
+!MESSAGE Initializing Java Language Server 0.4.0.201709151741
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2017-09-26 13:39:03.612
+!MESSAGE Creating the default Java project
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2017-09-26 13:39:03.622
+!MESSAGE >> workspace/didChangeConfiguration
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2017-09-26 13:39:04.225
+!MESSAGE Finished creating the default Java project
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2017-09-26 13:39:06.865
+!MESSAGE >>New configuration: {java={home=null, jdt={ls={vmargs=-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication}}, errors={incompleteClasspath={severity=warning}}, configuration={updateBuildConfiguration=interactive, maven={userSettings=null}}, trace={server=off}, referencesCodeLens={enabled=false}, signatureHelp={enabled=false}, implementationsCodeLens={enabled=false}, format={enabled=true}, import={exclusions=['**/node_modules', '**/.metadata']}}}
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2017-09-26 13:39:06.976
+!MESSAGE Importing Maven project(s)
