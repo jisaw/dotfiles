@@ -65,6 +65,8 @@
   (package-install 'use-package))
 
 (require 'use-package)
+(require 'bind-key)
+(require 'diminish)
 
 (use-package rainbow-delimiters
   :ensure t
@@ -88,23 +90,28 @@
   :ensure t
   :config (which-key-mode))
 
-
-;;(use-package evil
-;;  :ensure t
-;;  :config (define-key evil-normal-state-map "\C-y" 'yank)
-;;          (define-key evil-insert-state-map "\C-y" 'yank)
-;;          (define-key evil-visual-state-map "\C-y" 'yank)
-;;          (define-key evil-insert-state-map "\C-e" 'end-of-line)
-;;          (define-key evil-normal-state-map "\C-w" 'evil-delete)
-;;          (define-key evil-insert-state-map "\C-w" 'evil-delete)
-;;          (define-key evil-insert-state-map "\C-r" 'search-backward)
-;;          (define-key evil-visual-state-map "\C-w" 'evil-delete)
-;;          (evil-mode 1)
-;;)
+;;  (use-package counsel
+;;   :ensure t
+;;   :config (bind-key* "C-c p s g" 'counsel-git-grep))
+;; 
+(use-package evil
+  :ensure t
+  :config (define-key evil-normal-state-map "\C-y" 'yank)
+  (define-key evil-insert-state-map "\C-y" 'yank)
+  (define-key evil-visual-state-map "\C-y" 'yank)
+  (define-key evil-insert-state-map "\C-e" 'end-of-line)
+  (define-key evil-normal-state-map "\C-w" 'evil-delete)
+  (define-key evil-insert-state-map "\C-w" 'evil-delete)
+  (define-key evil-insert-state-map "\C-r" 'search-backward)
+  (define-key evil-visual-state-map "\C-w" 'evil-delete)
+  (evil-mode 1)
+  )
 
 (use-package projectile
+  :demand 
   :ensure t
-  :config (projectile-global-mode
+  :init (setq projectile-use-git-grep t)
+  :config (projectile-global-mode  
            (setq projectile-indexing-method 'alien)))
 
 (use-package helm
@@ -127,13 +134,35 @@
   :config (global-set-key (kbd "C-x g") 'magit-status)
   )
 
-(use-package autopair
-  :ensure t
-  :config (autopair-global-mode))
+(use-package undo-tree
+  :diminish undo-tree-mode
+  :config ((global-undo-tree-mode t)
+           (bind-key* "C-/" 'undo-tree-visualize)))
 
-;;(use-package material-theme
-;;  :ensure t
-;;  :config (load-theme 'material t))
+(use-package smartparens
+  :diminish smartparens-mode
+  :commands
+  smartparens-strict-mode
+  smartparens-mode
+  sp-restrict-to-pairs-interactive
+  sp-local-pair
+  :init
+  (setq sp-interactive-dwim t)
+  :config
+  (smartparens-global-mode t)
+  (require 'smartparens-config)
+  (sp-use-smartparens-bindings)
+
+  (sp-pair "(" ")" :wrap "C-(") ;; how do people live without this?
+  (sp-pair "[" "]" :wrap "s-[") ;; C-[ sends ESC
+  (sp-pair "{" "}" :wrap "C-{")
+
+  ;; WORKAROUND https://github.com/Fuco1/smartparens/issues/543
+  (bind-key "C-<left>" nil smartparens-mode-map)
+  (bind-key "C-<right>" nil smartparens-mode-map)
+
+  (bind-key "s-<delete>" 'sp-kill-sexp smartparens-mode-map)
+  (bind-key "s-<backspace>" 'sp-backward-kill-sexp smartparens-mode-map))
 
 (use-package powerline
   :ensure t
@@ -182,13 +211,22 @@
   :init (setq markdown-command "pandoc"))
 
 (use-package ido
-  :ensure t
-  :config (ido-mode 1)
-  (ido-everywhere 1))
+   :ensure t
+   :config (ido-mode 1)
+   (ido-everywhere 1))
 
 (use-package ido-completing-read+
-  :ensure t
-  :config (ido-ubiquitous-mode 1))
+   :ensure t
+   :config (ido-ubiquitous-mode 1))
+
+(use-package highlight-symbol
+  :diminish highlight-symbol-mode
+  :commands highlight-symbol
+  :init (bind-key* "C-;" 'highlight-symbol))
+
+(use-package popup-imenu
+  :commands popup-imenu
+  :bind ("M-i" . popup-imenu))
 
 (use-package smex
   :ensure t
@@ -228,7 +266,7 @@
     ("~/.emacs.d/org/work.org" "~/.emacs.d/org/home.org")))
  '(package-selected-packages
    (quote
-    (bash-completion dirtree json-mode powerline ample-theme omnisharp groovy-mode ## ensime xref-js2 js2-refactor js2-mode aainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm evil material-theme which-key use-package))))
+    (smartparens popup-imenu flx-ido json-navigator counsel emoji-display emojify bash-completion dirtree json-mode powerline ample-theme omnisharp groovy-mode ## ensime xref-js2 js2-refactor js2-mode aainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm evil material-theme which-key use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
