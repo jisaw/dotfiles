@@ -136,7 +136,7 @@
 
 (use-package undo-tree
   :diminish undo-tree-mode
-  :config ((global-undo-tree-mode t)
+  :config (global-undo-tree-mode
            (bind-key* "C-/" 'undo-tree-visualize)))
 
 (use-package smartparens
