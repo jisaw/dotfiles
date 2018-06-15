@@ -78,8 +78,10 @@
 (use-package json-reformat
   :ensure t)
 
-(use-package dirtree
-  :ensure t)
+(use-package aggressive-indent
+  :ensure t
+  :config (global-aggressive-indent-mode
+           (add-to-list 'aggressive-indent-excluded-modes 'html-mode)))
 
 (use-package rainbow-mode
   :ensure t
@@ -90,10 +92,6 @@
   :ensure t
   :config (which-key-mode))
 
-;;  (use-package counsel
-;;   :ensure t
-;;   :config (bind-key* "C-c p s g" 'counsel-git-grep))
-;; 
 (use-package evil
   :ensure t
   :config (define-key evil-normal-state-map "\C-y" 'yank)
@@ -136,8 +134,13 @@
 
 (use-package undo-tree
   :diminish undo-tree-mode
-  :config (global-undo-tree-mode
-           (bind-key* "C-/" 'undo-tree-visualize)))
+  :config (global-undo-tree-mode))
+
+(use-package smartparens
+  :ensure t
+  :config (require 'smartparens-config
+                   smartparens-strict-mode
+                   smartparens-global-mode))
 
 (use-package smartparens
   :diminish smartparens-mode
@@ -151,12 +154,7 @@
   :config
   (smartparens-global-mode t)
   (require 'smartparens-config)
-  (sp-use-smartparens-bindings)
-
-  (sp-pair "(" ")" :wrap "C-(") ;; how do people live without this?
-  (sp-pair "[" "]" :wrap "s-[") ;; C-[ sends ESC
-  (sp-pair "{" "}" :wrap "C-{")
-
+  
   ;; WORKAROUND https://github.com/Fuco1/smartparens/issues/543
   (bind-key "C-<left>" nil smartparens-mode-map)
   (bind-key "C-<right>" nil smartparens-mode-map)
@@ -211,13 +209,13 @@
   :init (setq markdown-command "pandoc"))
 
 (use-package ido
-   :ensure t
-   :config (ido-mode 1)
-   (ido-everywhere 1))
+  :ensure t
+  :config (ido-mode 1)
+  (ido-everywhere 1))
 
 (use-package ido-completing-read+
-   :ensure t
-   :config (ido-ubiquitous-mode 1))
+  :ensure t
+  :config (ido-ubiquitous-mode 1))
 
 (use-package highlight-symbol
   :diminish highlight-symbol-mode
@@ -266,7 +264,7 @@
     ("~/.emacs.d/org/work.org" "~/.emacs.d/org/home.org")))
  '(package-selected-packages
    (quote
-    (smartparens popup-imenu flx-ido json-navigator counsel emoji-display emojify bash-completion dirtree json-mode powerline ample-theme omnisharp groovy-mode ## ensime xref-js2 js2-refactor js2-mode aainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm evil material-theme which-key use-package))))
+    (aggressive-indent smartparens popup-imenu flx-ido json-navigator counsel emoji-display emojify bash-completion dirtree json-mode powerline ample-theme omnisharp groovy-mode ## ensime xref-js2 js2-refactor js2-mode aainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm evil material-theme which-key use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
