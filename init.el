@@ -1,13 +1,11 @@
 ;; global variables
 (setq
- inhibit-startup-screen t
  create-lockfiles nil
  make-backup-files nil
  column-number-mode t
  scroll-error-top-bottom t
  show-paren-delay 0.5
  use-package-always-ensure t
- initial-buffer-choice "~/.emacs.d/org/work.org"
  sentence-end-double-space nil)
 
 (setq debug-on-error t)
@@ -64,11 +62,13 @@
 
 (require 'use-package)
 (require 'bind-key)
-(require 'diminish)
 
 (use-package rainbow-delimiters
   :ensure t
   :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
+(use-package go-mode
+  :ensure t)
 
 (use-package json-mode
   :ensure t)
@@ -90,25 +90,14 @@
   :ensure t
   :config (which-key-mode))
 
-(use-package evil
-  :ensure t
-  :config (define-key evil-normal-state-map "\C-y" 'yank)
-  (define-key evil-insert-state-map "\C-y" 'yank)
-  (define-key evil-visual-state-map "\C-y" 'yank)
-  (define-key evil-insert-state-map "\C-e" 'end-of-line)
-  (define-key evil-normal-state-map "\C-w" 'evil-delete)
-  (define-key evil-insert-state-map "\C-w" 'evil-delete)
-  (define-key evil-insert-state-map "\C-r" 'search-backward)
-  (define-key evil-visual-state-map "\C-w" 'evil-delete)
-  (evil-mode 1)
-  )
-
 (use-package projectile
   :demand 
   :ensure t
   :init (setq projectile-use-git-grep t)
   :config (projectile-global-mode  
-           (setq projectile-indexing-method 'alien)))
+           (setq projectile-indexing-method 'alien))
+  (projectile-mode +1)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (use-package helm
   :ensure t
@@ -131,7 +120,6 @@
   )
 
 (use-package undo-tree
-  :diminish undo-tree-mode
   :config (global-undo-tree-mode))
 
 (use-package smartparens
@@ -141,7 +129,6 @@
                    smartparens-global-mode))
 
 (use-package smartparens
-  :diminish smartparens-mode
   :commands
   smartparens-strict-mode
   smartparens-mode
@@ -216,7 +203,6 @@
   :config (ido-ubiquitous-mode 1))
 
 (use-package highlight-symbol
-  :diminish highlight-symbol-mode
   :commands highlight-symbol
   :init (bind-key* "C-;" 'highlight-symbol))
 
@@ -706,7 +692,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
     ("a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
  '(package-selected-packages
    (quote
-    (shell-pop helm-dash aggressive-indent smartparens popup-imenu flx-ido json-navigator counsel emoji-display emojify bash-completion dirtree json-mode powerline ample-theme omnisharp groovy-mode ## ensime xref-js2 js2-refactor js2-mode aainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm evil material-theme which-key use-package))))
+    (go-mode shell-pop helm-dash aggressive-indent smartparens popup-imenu flx-ido json-navigator counsel emoji-display emojify bash-completion dirtree json-mode powerline ample-theme omnisharp groovy-mode ## ensime xref-js2 js2-refactor js2-mode aainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm material-theme which-key use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
