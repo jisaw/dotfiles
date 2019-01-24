@@ -63,11 +63,28 @@
 (require 'use-package)
 (require 'bind-key)
 
-
 (use-package expand-region
   :ensure t
   :config 
   (global-set-key (kbd "C-=") 'er/expand-region))
+
+;;(use-package powerline
+;; :ensure t
+;; :config (powerline-default-theme))
+
+
+(use-package all-the-icons
+  :ensure t)
+
+(use-package doom-themes
+  :ensure t
+  :config (load-theme 'doom-city-lights t)
+  (doom-themes-visual-bell-config))
+
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
+
 
 (use-package rainbow-delimiters
   :ensure t
@@ -112,7 +129,13 @@
   (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
   (global-set-key (kbd "C-x C-f") #'helm-find-files)
   (global-set-key (kbd "M-y") #'helm-show-kill-ring)
-  (global-set-key (kbd "C-x b") #'helm-mini)
+  (global-set-key (kbd "C-x C-b") #'helm-mini)
+  (defun er-switch-to-previous-buffer ()
+    "Switch to previously open buffer.
+Repeated invocations toggle between the two most recently open buffers."
+    (interactive)
+    (switch-to-buffer (other-buffer (current-buffer) 1)))
+  (global-set-key (kbd "C-x b") 'er-switch-to-previous-buffer)
   (setq helm-buffers-fuzzy-matching t
         helm-recentf-fuzzy-match    t))
 
@@ -153,13 +176,6 @@
   (bind-key "s-<delete>" 'sp-kill-sexp smartparens-mode-map)
   (bind-key "s-<backspace>" 'sp-backward-kill-sexp smartparens-mode-map))
 
-(use-package powerline
-  :ensure t
-  :config (powerline-default-theme))
-
-(use-package ample-theme
-  :ensure t
-  :config (load-theme 'ample-flat t t))
 
 (use-package groovy-mode
   :ensure t
@@ -695,10 +711,10 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
+    ("6b2636879127bf6124ce541b1b2824800afc49c6ccd65439d6eb987dbf200c36" "b35a14c7d94c1f411890d45edfb9dc1bd61c5becd5c326790b51df6ebf60f402" "a3fa4abaf08cc169b61dea8f6df1bbe4123ec1d2afeb01c17e11fdc31fc66379" "d2e9c7e31e574bf38f4b0fb927aaff20c1e5f92f72001102758005e53d77b8c9" "a5956ec25b719bf325e847864e16578c61d8af3e8a3d95f60f9040d02497e408" "ec5f761d75345d1cf96d744c50cf7c928959f075acf3f2631742d5c9fe2153ad" "62c81ae32320ceff5228edceeaa6895c029cc8f43c8c98a023f91b5b339d633f" "f27c3fcfb19bf38892bc6e72d0046af7a1ded81f54435f9d4d09b3bff9c52fc1" "b46ee2c193e350d07529fcd50948ca54ad3b38446dcbd9b28d0378792db5c088" default)))
  '(package-selected-packages
    (quote
-    (expand-region go-mode shell-pop helm-dash aggressive-indent smartparens popup-imenu flx-ido json-navigator counsel emoji-display emojify bash-completion dirtree json-mode powerline ample-theme omnisharp groovy-mode ## ensime xref-js2 js2-refactor js2-mode aainbow-mode rainbow-delimiters markdown-mode autopair scala-mode helm-projectile projectile helm material-theme which-key use-package))))
+    (doom-themes all-the-icons-dired doom-modeline darktooth darktooth-theme gruvbox-theme dracula-theme ample-theme powerline cider clojure-mode-extra-font-locking clojure-mode paredit smex popup-imenu highlight-symbol ido-completing-read+ markdown-mode ensime scala-mode auto-complete sbt-mode magit helm-projectile projectile which-key use-package undo-tree smartparens rainbow-mode rainbow-delimiters json-mode helm groovy-mode go-mode expand-region aggressive-indent))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
