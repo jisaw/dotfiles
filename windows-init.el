@@ -6,7 +6,7 @@
  scroll-error-top-bottom t
  show-paren-delay 0.5
  use-package-always-ensure t
- sentence-end-double-space nil)
+ sentence-end-double-space nil )
 
 (setq debug-on-error t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
@@ -37,7 +37,6 @@
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
 (menu-bar-mode -1)  
-(global-linum-mode)
 
 ;; global keybindings
 (global-unset-key (kbd "C-z"))
@@ -63,14 +62,22 @@
 (require 'use-package)
 (require 'bind-key)
 
+(use-package dashboard
+  :init
+  (add-hook 'after-init-hook 'dashboard-refresh-buffer)
+  :config
+  (setq dashboard-startup-banner 'official)
+  (dashboard-setup-startup-hook))
+
 (use-package expand-region
   :ensure t
   :config 
   (global-set-key (kbd "C-=") 'er/expand-region))
 
-;;(use-package powerline
-;; :ensure t
-;; :config (powerline-default-theme))
+(use-package powerline
+ :ensure t
+ :config (powerline-default-theme))
+
 
 (use-package all-the-icons
   :ensure t)
@@ -79,11 +86,6 @@
   :ensure t
   :config (load-theme 'doom-city-lights t)
   (doom-themes-visual-bell-config))
-
-(use-package doom-modeline
-  :ensure t
-  :hook (after-init . doom-modeline-mode))
-
 
 (use-package rainbow-delimiters
   :ensure t
@@ -262,7 +264,7 @@ Repeated invocations toggle between the two most recently open buffers."
     ("6b2636879127bf6124ce541b1b2824800afc49c6ccd65439d6eb987dbf200c36" "b35a14c7d94c1f411890d45edfb9dc1bd61c5becd5c326790b51df6ebf60f402" "a3fa4abaf08cc169b61dea8f6df1bbe4123ec1d2afeb01c17e11fdc31fc66379" "d2e9c7e31e574bf38f4b0fb927aaff20c1e5f92f72001102758005e53d77b8c9" "a5956ec25b719bf325e847864e16578c61d8af3e8a3d95f60f9040d02497e408" "ec5f761d75345d1cf96d744c50cf7c928959f075acf3f2631742d5c9fe2153ad" "62c81ae32320ceff5228edceeaa6895c029cc8f43c8c98a023f91b5b339d633f" "f27c3fcfb19bf38892bc6e72d0046af7a1ded81f54435f9d4d09b3bff9c52fc1" "b46ee2c193e350d07529fcd50948ca54ad3b38446dcbd9b28d0378792db5c088" default)))
  '(package-selected-packages
    (quote
-    (neotree doom-themes all-the-icons-dired doom-modeline darktooth darktooth-theme gruvbox-theme dracula-theme ample-theme powerline cider clojure-mode-extra-font-locking clojure-mode paredit smex popup-imenu highlight-symbol ido-completing-read+ markdown-mode ensime scala-mode auto-complete sbt-mode magit helm-projectile projectile which-key use-package undo-tree smartparens rainbow-mode rainbow-delimiters json-mode helm groovy-mode go-mode expand-region aggressive-indent))))
+    (hackernews dashboard-hackernews dashboard doom neotree doom-themes all-the-icons-dired doom-modeline darktooth darktooth-theme gruvbox-theme dracula-theme ample-theme powerline cider clojure-mode-extra-font-locking clojure-mode paredit smex popup-imenu highlight-symbol ido-completing-read+ markdown-mode ensime scala-mode auto-complete sbt-mode magit helm-projectile projectile which-key use-package undo-tree smartparens rainbow-mode rainbow-delimiters json-mode helm groovy-mode go-mode expand-region aggressive-indent))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
