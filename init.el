@@ -68,6 +68,20 @@
   :config 
   (global-set-key (kbd "C-=") 'er/expand-region))
 
+(use-package org
+  :ensure t
+  :config
+  (define-key global-map "\C-cl" 'org-store-link)
+  (define-key global-map "\C-ca" 'org-agenda)
+  (setq org-log-done t
+        org-agenda-files '("~/org"))
+  (setq org-agenda-custom-commands
+        '(("a" "Simple agenda view"
+           ((agenda "")
+            (todo "" ((org-agenda-todo-ignore-scheduled 'all)))))))
+  )
+
+
 ;;(use-package powerline
 ;; :ensure t
 ;; :config (powerline-default-theme))
