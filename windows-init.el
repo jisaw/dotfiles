@@ -6,7 +6,13 @@
  scroll-error-top-bottom t
  show-paren-delay 0.5
  use-package-always-ensure t
- sentence-end-double-space nil )
+ sentence-end-double-space nil 
+ inhibit-splash-screen t
+ initial-buffer-choice (lambda ()
+    (org-agenda-list 7)
+    (delete-other-windows)
+    (get-buffer "*Org Agenda*")
+))
 
 (setq debug-on-error t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
@@ -68,21 +74,20 @@
   (define-key global-map "\C-cl" 'org-store-link)
   (define-key global-map "\C-ca" 'org-agenda)
   (setq org-log-done t
-        org-agenda-files '("~/org"))
+        org-agenda-files '("~/org")
+        org-agenda-start-day "-1d"
+        org-agenda-span 7
+        org-agenda-start-on-weekday nil)
   (setq org-agenda-custom-commands
-        '(("a" "Simple agenda view"
-           ((agenda "")
-            (todo "" ((org-agenda-todo-ignore-scheduled 'all)))))))
+        '(("a" "Agenda with global TODO"
+           ((agenda ""
+                    ((org-agenda-skip-scheduled-if-done t)))
+            (todo ""
+                  ((org-agenda-todo-ignore-scheduled 'all)))
+            ))))
   )
 
   
-(use-package dashboard
-  :init
-  (add-hook 'after-init-hook 'dashboard-refresh-buffer)
-  :config
-  (setq dashboard-startup-banner 'official)
-  (dashboard-setup-startup-hook))
-
 (use-package expand-region
   :ensure t
   :config 
@@ -96,10 +101,16 @@
 (use-package all-the-icons
   :ensure t)
 
-(use-package doom-themes
+(use-package darktooth-theme
   :ensure t
-  :config (load-theme 'doom-city-lights t)
-  (doom-themes-visual-bell-config))
+  :config
+  (load-theme 'darktooth t)
+  (setq visible-bell t))
+
+;;(use-package doom-themes
+;;:ensure t
+;;:config (load-theme 'doom-city-lights t)
+;;(doom-themes-visual-bell-config))
 
 (use-package rainbow-delimiters
   :ensure t
@@ -111,13 +122,17 @@
 (use-package json-mode
   :ensure t)
 
+(use-package js2-mode
+  :ensure t
+  :config (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+
 (use-package json-reformat
   :ensure t)
 
-(use-package aggressive-indent
-  :ensure t
-  :config (global-aggressive-indent-mode
-           (add-to-list 'aggressive-indent-excluded-modes 'html-mode)))
+;;(use-package aggressive-indent
+;;  :ensure t
+;;  :config (global-aggressive-indent-mode
+;;           (add-to-list 'aggressive-indent-excluded-modes 'html-mode)))
 
 (use-package rainbow-mode
   :ensure t
@@ -276,6 +291,7 @@ Repeated invocations toggle between the two most recently open buffers."
  '(custom-safe-themes
    (quote
     ("6b2636879127bf6124ce541b1b2824800afc49c6ccd65439d6eb987dbf200c36" "b35a14c7d94c1f411890d45edfb9dc1bd61c5becd5c326790b51df6ebf60f402" "a3fa4abaf08cc169b61dea8f6df1bbe4123ec1d2afeb01c17e11fdc31fc66379" "d2e9c7e31e574bf38f4b0fb927aaff20c1e5f92f72001102758005e53d77b8c9" "a5956ec25b719bf325e847864e16578c61d8af3e8a3d95f60f9040d02497e408" "ec5f761d75345d1cf96d744c50cf7c928959f075acf3f2631742d5c9fe2153ad" "62c81ae32320ceff5228edceeaa6895c029cc8f43c8c98a023f91b5b339d633f" "f27c3fcfb19bf38892bc6e72d0046af7a1ded81f54435f9d4d09b3bff9c52fc1" "b46ee2c193e350d07529fcd50948ca54ad3b38446dcbd9b28d0378792db5c088" default)))
+ '(magit-repository-directories (quote (("c:/bench/git" . 5))))
  '(package-selected-packages
    (quote
     (hackernews dashboard-hackernews dashboard doom neotree doom-themes all-the-icons-dired doom-modeline darktooth darktooth-theme gruvbox-theme dracula-theme ample-theme powerline cider clojure-mode-extra-font-locking clojure-mode paredit smex popup-imenu highlight-symbol ido-completing-read+ markdown-mode ensime scala-mode auto-complete sbt-mode magit helm-projectile projectile which-key use-package undo-tree smartparens rainbow-mode rainbow-delimiters json-mode helm groovy-mode go-mode expand-region aggressive-indent))))
