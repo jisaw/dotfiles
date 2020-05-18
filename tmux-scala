@@ -1,0 +1,27 @@
+#!/bin/bash
+SESSION=`basename $PWD`
+
+lines="$(tput lines)"
+columns="$(tput cols)"
+
+tmux -2 new-session -d -s $SESSION -x "$columns" -y "$lines"
+
+tmux rename-window -t $SESSION:1 vim
+
+tmux split-window -h -p 30
+tmux split-window -v -p 40
+tmux split-window -v -p 20 
+
+tmux send-keys -t 1 'nvim README.md' Enter
+tmux send-keys -t 2 'sbt' Enter
+tmux send-keys -t 3 "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all" Enter
+tmux send-keys -t 4 'cd ~/Developer/git/aws-assume-role' Enter
+
+tmux new-window -t $SESSION -a -n htop 'htop'
+tmux split-window -v -p 10
+tmux send-keys -t 2 'pianobar' Enter
+
+tmux select-window -t $SESSION:1
+tmux select-pane -t 1
+
+tmux -2 attach -t $SESSION
