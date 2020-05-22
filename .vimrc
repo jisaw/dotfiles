@@ -7,12 +7,13 @@ Plug 'ianks/vim-tsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'morhetz/gruvbox'
+Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'epmatsw/ag.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'preservim/nerdtree'
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}        " LSP client + autocompletion plugin
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'derekwyatt/vim-scala'                                       " scala plugin
 Plug 'Xuyuanp/nerdtree-git-plugin'                                " shows files git status on the NerdTree
 Plug 'kien/rainbow_parentheses.vim'                               " for nested parentheses
