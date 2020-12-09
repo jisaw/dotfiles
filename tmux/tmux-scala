@@ -1,0 +1,18 @@
+#!/bin/bash
+SESSION=`basename $PWD`
+
+lines="$(tput lines)"
+columns="$(tput cols)"
+
+tmux -2 new-session -d -s $SESSION -x "$columns" -y "$lines"
+
+tmux rename-window -t $SESSION:1 vim
+
+tmux send-keys -t 1 'nvim build.sbt' Enter
+
+tmux new-window -t $SESSION -a -n sbt 'sbt'
+tmux split-window -v -p 20
+
+tmux select-window -t 1
+
+tmux -2 attach -t $SESSION
