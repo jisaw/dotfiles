@@ -4,9 +4,12 @@ filetype off                  " required
 call plug#begin('~/.vim/plugged')
 
 Plug 'ianks/vim-tsx'
+Plug 'preservim/nerdcommenter'
+Plug 'sainnhe/sonokai'
 Plug 'leafgarland/typescript-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'morhetz/gruvbox'
+Plug 'arzg/vim-colors-xcode'
 Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -18,11 +21,17 @@ Plug 'derekwyatt/vim-scala'                                       " scala plugin
 Plug 'Xuyuanp/nerdtree-git-plugin'                                " shows files git status on the NerdTree
 Plug 'kien/rainbow_parentheses.vim'                               " for nested parentheses
 Plug 'mbbill/undotree'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'yggdroot/indentline'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'ryanoasis/vim-devicons'
 
 " Initialize plugin system
 call plug#end()
+
 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -36,43 +45,92 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-
+set encoding=UTF-8
 let mapleader = " "
 autocmd CursorHold * update
 
+let g:tmux_navigator_save_on_switch = 2
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+set splitbelow
+set splitright
+
 nnoremap <C-p> :GFiles<CR>
 
-colo gruvbox
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1 
+
+let g:indentLine_enabled = 1
+
+" Important!!
+if has('termguicolors')
+  set termguicolors
+endif
+" Enable true color 启用终端24位色
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+" The configuration options should be placed before `colorscheme sonokai`.
+let g:sonokai_style = 'default'
+let g:sonokai_transparent_background = 1
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 0
+let g:sonokai_diagnostic_line_highlight = 1
+
+function! s:sonokai_custom() abort
+  " Link a highlight group to a predefined highlight group.
+  " See `colors/sonokai.vim` for all predefined highlight groups.
+  " Initialize the color palette.
+  " The parameter is a valid value for `g:sonokai_style`,
+  let l:palette = sonokai#get_palette('atlantis')
+  " Define a highlight group.
+  " The first parameter is the name of a highlight group,
+  " the second parameter is the foreground color,
+  " the third parameter is the background color,
+  " the fourth parameter is for UI highlighting which is optional,
+  " and the last parameter is for `guisp` which is also optional.
+  " See `autoload/sonokai.vim` for the format of `l:palette`.
+  call sonokai#highlight('CursorLine', l:palette.blue, l:palette.none, 'bold,italic')
+endfunction
+
+augroup SonokaiCustom
+  autocmd!
+  autocmd ColorScheme sonokai call s:sonokai_custom()
+augroup END
+
+colorscheme sonokai
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme='gruvbox'
+let g:airline_theme = 'sonokai'
 set background=dark
 set nohlsearch
+
 imap jj <Esc>
 
 nnoremap <CR> G
 set incsearch
-set tabstop=4 softtabstop=4 
-set shiftwidth=4 
+set tabstop=2 softtabstop=2 
+set shiftwidth=2 
 set expandtab
 set smartindent
 set nu 
+set relativenumber
 set nowrap
 set smartcase 
 set noswapfile
 set nobackup
-set relativenumber
+set number
 set undodir=~/.vim/undodir
 set undofile
 " Draw a line at 120 columns
-set colorcolumn=120
-highlight ColorColumn ctermbg=235 guibg=#2c2d27
-
-
-map <leader>h :wincmd h<CR>
-map <leader>j :wincmd j<CR>
-map <leader>k :wincmd k<CR>
-map <leader>l :wincmd l<CR>
+"set colorcolumn=120
+"highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
 au BufNewFile,BufRead *.ts setlocal filetype=typescript
 au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
