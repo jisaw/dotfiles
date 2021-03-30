@@ -3,8 +3,12 @@ filetype off                  " required
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'tpope/vim-surround'
+Plug 'chriskempson/base16-vim'
+Plug 'TaDaa/vimade'
+Plug 'tpope/vim-projectionist'
 Plug 'ianks/vim-tsx'
-Plug 'preservim/nerdcommenter'
+Plug 'aserebryakov/vim-todo-lists'
 Plug 'sainnhe/sonokai'
 Plug 'leafgarland/typescript-vim'
 Plug 'tpope/vim-fugitive'
@@ -16,12 +20,13 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'epmatsw/ag.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'preservim/nerdtree'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'derekwyatt/vim-scala'                                       " scala plugin
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'Xuyuanp/nerdtree-git-plugin'                                " shows files git status on the NerdTree
 Plug 'kien/rainbow_parentheses.vim'                               " for nested parentheses
 Plug 'mbbill/undotree'
 Plug 'godlygeek/tabular'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
 Plug 'plasticboy/vim-markdown'
 Plug 'yggdroot/indentline'
 Plug 'christoomey/vim-tmux-navigator'
@@ -31,7 +36,6 @@ Plug 'ryanoasis/vim-devicons'
 
 " Initialize plugin system
 call plug#end()
-
 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -45,11 +49,29 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+let g:go_fmt_command = "goimports"
 set encoding=UTF-8
 let mapleader = " "
 autocmd CursorHold * update
 
+nnoremap <silent> <leader>cn :call Cycle_numbering()<CR>
+
+function! Cycle_numbering() abort
+  if exists('+relativenumber')
+    execute {
+          \ '00': 'set relativenumber   | set number',
+          \ '01': 'set norelativenumber | set number',
+          \ '10': 'set norelativenumber | set nonumber',
+          \ '11': 'set norelativenumber | set number' }[&number . &relativenumber]
+  else
+    " No relative numbering, just toggle numbers on and off.
+    set number!
+  endif
+endfunction
+
 let g:tmux_navigator_save_on_switch = 2
+
+:tnoremap jj <C-\><C-n>
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -58,7 +80,10 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-nnoremap <C-p> :GFiles<CR>
+nnoremap <C-p> :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>cm :Commits<CR>
+
 
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1 
@@ -76,38 +101,10 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-" The configuration options should be placed before `colorscheme sonokai`.
-let g:sonokai_style = 'default'
-let g:sonokai_transparent_background = 1
-let g:sonokai_enable_italic = 1
-let g:sonokai_disable_italic_comment = 0
-let g:sonokai_diagnostic_line_highlight = 1
-
-function! s:sonokai_custom() abort
-  " Link a highlight group to a predefined highlight group.
-  " See `colors/sonokai.vim` for all predefined highlight groups.
-  " Initialize the color palette.
-  " The parameter is a valid value for `g:sonokai_style`,
-  let l:palette = sonokai#get_palette('atlantis')
-  " Define a highlight group.
-  " The first parameter is the name of a highlight group,
-  " the second parameter is the foreground color,
-  " the third parameter is the background color,
-  " the fourth parameter is for UI highlighting which is optional,
-  " and the last parameter is for `guisp` which is also optional.
-  " See `autoload/sonokai.vim` for the format of `l:palette`.
-  call sonokai#highlight('CursorLine', l:palette.blue, l:palette.none, 'bold,italic')
-endfunction
-
-augroup SonokaiCustom
-  autocmd!
-  autocmd ColorScheme sonokai call s:sonokai_custom()
-augroup END
-
-colorscheme sonokai
+colorscheme base16-tomorrow-night
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'sonokai'
+let g:airline_theme = 'base16_tomorrow'
 set background=dark
 set nohlsearch
 
@@ -140,6 +137,7 @@ vnoremap K :m '<-2<CR>gv=gv
 
 nnoremap <leader>u :UndotreeShow<CR>
 
+
 if executable('rg')
     let g:rg_derive_root='true'
 endif
@@ -152,13 +150,21 @@ let g:netrw_banner = 0
 
 let g:netrw_winsize = 25
 
-" coc extensions
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-metals', 'coc-git']
 
+" folds
+nnoremap <S-tab> za
+set fdo-=search
+
+" coc extensions
+let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-go', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-metals', 'coc-git', 'coc-pairs']
+
+autocmd FileType json setlocal conceallevel=0 
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " Scala stuff
 au BufRead,BufNewFile *.sbt set filetype=scala
-autocmd FileType json syntax match Comment +\/\/.\+$+
+autocmd FileType scala setlocal foldmethod=indent
+autocmd FileType scala setlocal foldlevel=1 
 " Configuration for coc.nvim
 
 " If hidden is not set, TextEdit might fail.
@@ -291,6 +297,22 @@ nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
 nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
 " Reveal current current class (trait or object) in Tree View 'metalsPackages'
 nnoremap <silent> <space>tf :<C tCR>
+
+" Projectionist
+let g:projectionist_heuristics = {
+      \   "*": {
+      \     "src/main/scala/*.scala": {
+      \        "alternate": "src/test/scala/{}Test.scala",
+      \        "type": "source",
+      \     },
+      \     "src/test/scala/*Test.scala": {
+      \        "alternate": "src/main/scala/{}.scala", 
+      \        "type": "test"
+      \     },
+      \   }
+      \ }
+
+nnoremap <silent><leader>af :A<CR>
 
 " The Silver Searcher
 if executable('ag')
