@@ -7,7 +7,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug "nvim-telescope/telescope-fzf-writer.nvim"
 Plug 'tpope/vim-surround'
 Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-projectionist'
