@@ -134,3 +134,5 @@ creds-plz () {
 
 alias gs='git status'
 alias ls='ls -la'
+alias ncim='nvim'
+alias tls='tmux ls'
