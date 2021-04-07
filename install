@@ -4,8 +4,11 @@ mkdir -p ~/.config/nvim/after/plugin
 mkdir -p ~/.config/nvim/lua/jisaw
 
 # link wholesale
+echo "Starting Install..."
 for f in `find -E . -regex ".*\.vim$|.*\.lua$"`; do
-    echo $f
+    echo "Installing $f ... "
     rm -rf ~/.config/nvim/$f
     ln -s ~/Developer/git/dotfiles/$f ~/.config/nvim/$f
 done
+
+echo  "Done! "
