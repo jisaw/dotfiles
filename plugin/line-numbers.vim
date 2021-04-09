@@ -1,6 +1,4 @@
 " line numbers
-set relativenumber
-set number
 nnoremap <silent> <leader>cn :call Cycle_numbering()<CR>
 
 function! Cycle_numbering() abort
@@ -15,3 +13,6 @@ function! Cycle_numbering() abort
     set number!
   endif
 endfunction
+
+set relativenumber
+set number

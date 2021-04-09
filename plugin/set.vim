@@ -1,4 +1,5 @@
 set encoding=UTF-8
+set autowriteall
 set splitbelow
 set splitright
 set background=dark
