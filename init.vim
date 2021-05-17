@@ -5,6 +5,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'szw/vim-maximizer'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'puremourning/vimspector'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -54,7 +56,6 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-let g:go_fmt_command = "goimports"
 let mapleader = " "
 
 let g:tmux_navigator_save_on_switch = 2
