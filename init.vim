@@ -8,6 +8,8 @@ Plug 'szw/vim-maximizer'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'puremourning/vimspector'
+Plug 'w0rp/ale'
+Plug 'Olical/conjure', { 'tag': 'v4.3.1' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
@@ -39,6 +41,7 @@ Plug 'yggdroot/indentline'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
 Plug 'ryanoasis/vim-devicons'
 
 " Initialize plugin system
