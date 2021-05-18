@@ -4,6 +4,10 @@ filetype off                  " required
 call plug#begin('~/.vim/plugged')
 
 Plug 'nvim-lua/popup.nvim'
+Plug 'tpope/vim-dispatch'
+Plug 'clojure-vim/vim-jack-in'
+" Only in Neovim:
+Plug 'radenling/vim-dispatch-neovim'
 Plug 'szw/vim-maximizer'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
@@ -60,6 +64,7 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 let mapleader = " "
+let maplocalleader = ","
 
 let g:tmux_navigator_save_on_switch = 2
 
