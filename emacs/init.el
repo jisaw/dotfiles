@@ -1,0 +1,12 @@
+(add-to-list 'load-path (concat user-emacs-directory "elisp"))
+
+(require 'base)
+(require 'theme)
+;;(require 'vim)
+(require 'completion)
+(require 'workspace)
+(require 'splash)
+(require 'git)
+(require 'scala)
+(require 'go)
+(require 'notes)
